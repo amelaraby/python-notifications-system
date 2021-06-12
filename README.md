@@ -79,6 +79,6 @@ This should run 3 services:
   Note that docker compose file adjusted to run 3 worker nodes.
 - **_rabbitmq:_** which we use as our message broker.
 
-###TODO:
+### TODO:
 1. Add unit / integration tests
 2. Add logging for the message being sent, we can use an RDBMS such as MySQL to log the notifications including a flag if it's sent or not yet.
