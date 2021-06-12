@@ -1,9 +1,9 @@
 # Notifications System
 
-###Description:
+### Description:
 This should allow users to send 3 types of notifications which is (Push Notifications, Email, SMS).
 
-###Requirements:
+### Requirements:
 - Notifications should be received as soon as possible
 - If the system is under high workload, a light delay is acceptable
 - Should be scalable
