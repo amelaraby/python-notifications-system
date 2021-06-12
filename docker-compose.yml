@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./notifications:/usr/src/app
+    environment:
+      FLASK_ENV: development
+      MQ_HOST: rabbitmq
+      MQ_QUEUE: notifications_queue
+    ports:
+      - "5000:5000"
+
+  worker:
+    build: .
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./notifications:/usr/src/app
+    environment:
+      MQ_HOST: rabbitmq
+      MQ_QUEUE: notifications_queue
+    command: [ "python", "./consumer.py" ]
+    deploy:
+      mode: replicated
+      replicas: 3
+
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    ports:
+      - "15672:15672"
+
+

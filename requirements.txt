@@ -1,0 +1,4 @@
+Flask==1.1.4
+Flask-Injector==0.12.3
+pika==1.2.0
+injector
